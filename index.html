@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+  <!-- SEO & Social Media Open Graph -->
+  <title>Viitorul copilului tău – 30.000€ la 18 ani</title>
+  <meta name="description" content="Cum ar fi să aibă copilul tău 30.000 de euro la 18 ani? Descoperă cum matematica bate inflația cu doar 58€/lună." />
+
+  <!-- Open Graph (Facebook, LinkedIn, WhatsApp, Telegram) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Viitorul copilului tău – 30.000€ la 18 ani 🎓" />
+  <meta property="og:description" content="Cum 58€/lună din alocație poate deveni un fond de 30.000€ la 18 ani. Swipe pentru a vedea cum matematica bate inflația." />
+  <meta property="og:image" content="https://placehold.co/1200x630/1d4ed8/ffffff?text=30.000+Euro+la+18+ani+%F0%9F%8E%93&font=montserrat" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Viitorul copilului tău – 30.000€ la 18 ani 🎓" />
+  <meta name="twitter:description" content="Cum 58€/lună din alocație poate deveni un fond de 30.000€. Matematica bate inflația." />
+  <meta name="twitter:image" content="https://placehold.co/1200x630/1d4ed8/ffffff?text=30.000+Euro+la+18+ani+%F0%9F%8E%93&font=montserrat" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue:    #1d4ed8;
+      --blue-lt: #3b82f6;
+      --yellow:  #fbbf24;
+      --red:     #dc2626;
+      --amber:   #d97706;
+      --green:   #059669;
+      --slate:   #1e293b;
+    }
+
+    html, body {
+      width: 100%; height: 100%;
+      overflow: hidden;
+      font-family: 'DM Sans', sans-serif;
+      background: #000;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
+
+    /* ── STAGE ── */
+    #stage {
+      position: fixed; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    /* ── DECK ── */
+    #deck {
+      position: relative;
+      width: 100%; height: 100%;
+      overflow: hidden;
+    }
+    @media (min-width: 768px) {
+      #deck {
+        width: 960px; height: 540px;
+        border-radius: 20px;
+        box-shadow: 0 32px 80px rgba(0,0,0,.7);
+      }
+    }
+
+    /* ── SLIDES ── */
+    .slide {
+      position: absolute; inset: 0;
+      padding: clamp(24px, 5vw, 52px);
+      display: flex; flex-direction: column; justify-content: center;
+      opacity: 0; pointer-events: none;
+      transition: opacity .45s ease, transform .45s ease;
+      transform: translateX(40px);
+      overflow-y: auto;
+    }
+    .slide.active   { opacity: 1; pointer-events: all; transform: translateX(0); }
+    .slide.exit-left  { opacity: 0; transform: translateX(-40px); }
+
+    /* ── THEMES ── */
+    .t-blue   { background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%); color: #fff; }
+    .t-light  { background: #f8fafc; color: #1e293b; }
+    .t-red    { background: #fff1f2; color: #7f1d1d; }
+    .t-amber  { background: #fffbeb; color: #78350f; }
+    .t-green  { background: #ecfdf5; color: #064e3b; }
+    .t-dark   { background: #0f172a; color: #e2e8f0; }
+
+    /* ── TYPOGRAPHY ── */
+    .display { font-family: 'Sora', sans-serif; font-weight: 800; line-height: 1.1; }
+    .heading { font-family: 'Sora', sans-serif; font-weight: 700; line-height: 1.15; }
+    .sub     { font-weight: 600; }
+    .body    { line-height: 1.65; }
+
+    h1 { font-size: clamp(1.7rem, 5vw, 3.4rem); }
+    h2 { font-size: clamp(1.5rem, 4vw, 2.8rem); }
+    h3 { font-size: clamp(1.1rem, 2.8vw, 1.9rem); }
+    p, li { font-size: clamp(0.95rem, 2.2vw, 1.25rem); }
+
+    /* ── ICONS (inline SVG sprites) ── */
+    .icon { flex-shrink: 0; }
+
+    /* ── CARD ── */
+    .card {
+      background: rgba(255,255,255,.55);
+      backdrop-filter: blur(8px);
+      border-radius: 14px;
+      padding: clamp(14px, 3vw, 28px);
+    }
+    .card-dark {
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 14px;
+      padding: clamp(14px, 3vw, 28px);
+    }
+
+    /* ── ROW ── */
+    .row { display: flex; align-items: center; gap: 14px; }
+
+    /* ── TABLE ── */
+    table { width: 100%; border-collapse: collapse; }
+    th, td { padding: clamp(8px, 2vw, 16px); text-align: left; }
+    th { font-family: 'Sora', sans-serif; font-size: clamp(.8rem, 1.8vw, 1rem); border-bottom: 2px solid rgba(255,255,255,.15); }
+    td { font-size: clamp(.85rem, 1.9vw, 1.05rem); }
+    .tr-red   { background: rgba(220,38,38,.22); }
+    .tr-amber { background: rgba(217,119,6,.22); }
+    .tr-green { background: rgba(5,150,105,.28); }
+    .val      { font-family: 'Sora', sans-serif; font-weight: 700; font-size: clamp(1rem, 2.2vw, 1.4rem); }
+
+    /* ── LIST ── */
+    .list { display: flex; flex-direction: column; gap: 10px; }
+    .list-item {
+      display: flex; align-items: flex-start; gap: 12px;
+      background: rgba(255,255,255,.55);
+      border-radius: 10px;
+      padding: clamp(10px, 2vw, 18px);
+      font-size: clamp(.9rem, 2vw, 1.1rem);
+      line-height: 1.5;
+    }
+    .t-red  .list-item { background: rgba(255,255,255,.5); }
+    .t-dark .list-item { background: rgba(255,255,255,.07); }
+
+    /* ── BADGE ── */
+    .badge {
+      display: inline-block;
+      background: var(--yellow); color: #1e3a8a;
+      font-family: 'Sora', sans-serif; font-weight: 700;
+      border-radius: 999px; padding: 10px 26px;
+      font-size: clamp(.9rem, 2vw, 1.1rem);
+      white-space: nowrap;
+    }
+    .badge-outline {
+      display: inline-block;
+      border: 2px solid rgba(255,255,255,.8); color: #fff;
+      font-family: 'Sora', sans-serif; font-weight: 700;
+      border-radius: 999px; padding: 10px 26px;
+      font-size: clamp(.9rem, 2vw, 1.1rem);
+      white-space: nowrap;
+    }
+
+    /* ── CTA WHATSAPP ── */
+    .wa-btn {
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      background: #25d366; color: #fff;
+      font-family: 'Sora', sans-serif; font-weight: 700;
+      border-radius: 14px; padding: 16px 32px;
+      text-decoration: none; font-size: clamp(1rem, 2.5vw, 1.2rem);
+      box-shadow: 0 6px 24px rgba(37,211,102,.4);
+      transition: transform .15s, box-shadow .15s;
+    }
+    .wa-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 32px rgba(37,211,102,.5); }
+    .wa-btn:active { transform: scale(.97); }
+
+    /* ── NAV ARROWS ── */
+    .nav-btn {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      background: rgba(0,0,0,.25); backdrop-filter: blur(6px);
+      border: none; border-radius: 50%; width: 44px; height: 44px;
+      display: flex; align-items: center; justify-content: center;
+      color: #fff; cursor: pointer; z-index: 20;
+      transition: background .2s, opacity .2s;
+    }
+    .nav-btn:hover { background: rgba(0,0,0,.45); }
+    #btn-prev { left: 12px; }
+    #btn-next { right: 12px; }
+    .nav-btn.hidden { opacity: 0; pointer-events: none; }
+
+    /* ── DOTS ── */
+    #dots {
+      position: absolute; bottom: 18px; left: 0; right: 0;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      z-index: 20;
+    }
+    .dot {
+      height: 10px; border-radius: 999px;
+      background: currentColor; opacity: .35;
+      width: 10px; border: none; cursor: pointer;
+      transition: width .3s, opacity .3s;
+    }
+    .dot.active { width: 28px; opacity: 1; }
+
+    /* ── ACCENT CHIP ── */
+    .chip {
+      display: inline-block;
+      background: var(--yellow); color: #1e3a8a;
+      font-family: 'Sora', sans-serif; font-weight: 800;
+      border-radius: 8px; padding: 4px 12px;
+    }
+
+    /* slide-specific helpers */
+    .big-result {
+      background: var(--green);
+      color: #fff;
+      border-radius: 14px;
+      padding: clamp(14px, 3vw, 26px);
+      text-align: center;
+      font-family: 'Sora', sans-serif; font-weight: 800;
+      font-size: clamp(1.3rem, 3.5vw, 2rem);
+      margin-top: 6px;
+    }
+
+    .space-y > * + * { margin-top: clamp(10px, 2vw, 20px); }
+
+    /* scroll fix on small phones */
+    @media (max-height: 600px) {
+      .slide { padding: 16px; overflow-y: auto; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="stage">
+  <div id="deck">
+
+    <!-- ══ SLIDE 1 ══ -->
+    <div class="slide t-blue active" id="s0">
+      <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;text-align:center;gap:clamp(16px,3vw,36px);">
+        <div style="display:flex;gap:16px;">
+          <!-- GraduationCap -->
+          <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+          <!-- Car -->
+          <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17H3a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h1l2-4h12l2 4h1a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2h-2"/><circle cx="7.5" cy="17.5" r="2.5"/><circle cx="16.5" cy="17.5" r="2.5"/></svg>
+        </div>
+        <h1 class="display">
+          Cum ar fi să aibă copilul tău <span class="chip">30.000 de euro</span><br/>la 18 ani?
+        </h1>
+        <p style="font-size:clamp(1rem,2.5vw,1.4rem);opacity:.85;max-width:620px;">
+          Swipe pentru a vedea cum matematica bate inflația. 👉
+        </p>
+      </div>
+    </div>
+
+    <!-- ══ SLIDE 2 ══ -->
+    <div class="slide t-light" id="s1">
+      <div class="space-y">
+        <div class="row">
+          <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          <h2 class="heading">Realitatea din România</h2>
+        </div>
+        <p class="body">Să crești un copil este o provocare financiară uriașă: meditații, haine, tabere, rechizite…</p>
+        <div class="card" style="border-left:5px solid var(--blue);">
+          <p class="body">Dar hai să vorbim despre un singur instrument la care toți copiii au dreptul:</p>
+          <p style="font-family:'Sora',sans-serif;font-weight:800;font-size:clamp(1.3rem,3.5vw,2.2rem);color:var(--blue);margin-top:8px;">
+            Alocația de stat <span style="font-size:.65em;color:#64748b;">~58 Euro / lună</span>
+          </p>
+        </div>
+        <p class="sub" style="font-size:clamp(.95rem,2.2vw,1.2rem);">Iată ce se întâmplă în funcție de ce decizie iei astăzi:</p>
+      </div>
+    </div>
+
+    <!-- ══ SLIDE 3 ══ -->
+    <div class="slide t-red" id="s2">
+      <div class="space-y">
+        <div class="row">
+          <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+          <h2 class="heading">Scenariul 1 — Nu faci nimic</h2>
+        </div>
+        <h3 class="sub" style="color:#b91c1c;">Cheltui alocația pe lucruri mărunte.</h3>
+        <div class="list">
+          <div class="list-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px"><polyline points="23 18 13.5 8.5 8.5 13.5 1 6"/><polyline points="17 18 23 18 23 12"/></svg>
+            <span>Banii se duc pe cheltuieli zilnice, o jucărie în plus sau acoperă un mic gol din bugetul lunii.</span>
+          </div>
+          <div class="list-item" style="font-weight:700;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px"><polyline points="23 18 13.5 8.5 8.5 13.5 1 6"/><polyline points="17 18 23 18 23 12"/></svg>
+            <span>La 18 ani: Copilul tău pornește în viața de adult cu <span style="color:var(--red)">0 €</span> fond de siguranță.</span>
+          </div>
+          <div class="list-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px"><polyline points="23 18 13.5 8.5 8.5 13.5 1 6"/><polyline points="17 18 23 18 23 12"/></svg>
+            <span>Presiunea financiară pentru facultate sau prima mașină cade tot pe umerii tăi.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ SLIDE 4 ══ -->
+    <div class="slide t-amber" id="s3">
+      <div class="space-y">
+        <div class="row">
+          <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 5c-1.5 0-2.8 1.4-3 2-3.5 1.3-4 4.4-4 6.9 0 1.2.1 2.1.2 2.1H5a2 2 0 0 0 0 4h14a2 2 0 0 0 0-4h-1.7a18.7 18.7 0 0 0 .2-2.1c0-2.5-.5-5.6-4-6.9-.2-.6-1.5-2-3-2z"/></svg>
+          <h2 class="heading">Scenariul 2 — Economisești</h2>
+        </div>
+        <h3 class="sub" style="color:#b45309;">Pui 58€ deoparte, lună de lună (18 ani).</h3>
+        <div class="card">
+          <p style="font-family:'Sora',sans-serif;font-weight:700;font-size:clamp(1.1rem,2.8vw,1.5rem);margin-bottom:8px;">Suma totală strânsă: <span style="color:var(--amber)">~12.500 €</span></p>
+          <p class="body">Pare o victorie, dar este o capcană. De ce? Din cauza <strong>inflației</strong>.</p>
+          <p class="body" style="margin-top:8px;">Peste 18 ani, puterea de cumpărare va fi mult mai mică — banii pot valora real <strong>jumătate</strong>. Au stat degeaba și au pierdut din valoare.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ SLIDE 5 ══ -->
+    <div class="slide t-green" id="s4">
+      <div class="space-y">
+        <div class="row">
+          <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+          <h2 class="heading">Scenariul 3 — Investești</h2>
+        </div>
+        <h3 class="sub" style="color:#047857;">Pui banii să muncească pentru el.</h3>
+        <div class="list">
+          <div class="list-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>Investești automat cei 58€/lună într-un ETF (ex: S&amp;P 500), randament mediu istoric 8–10%/an.</span>
+          </div>
+          <div class="list-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px"><polyline points="20 6 9 17 4 12"/></svg>
+            <span><strong>Magia dobânzii compuse:</strong> Câștigi dobândă la dobândă. Banii produc alți bani.</span>
+          </div>
+        </div>
+        <div class="big-result">La 18 ani:<br/>Aprox. 28.000 – 30.000 de Euro 🎓</div>
+      </div>
+    </div>
+
+    <!-- ══ SLIDE 6 ══ -->
+    <div class="slide t-dark" id="s5">
+      <div class="space-y">
+        <h2 class="heading" style="text-align:center;">Comparația Finală</h2>
+        <div style="overflow-x:auto;">
+          <table>
+            <thead>
+              <tr>
+                <th>Decizia ta (18 ani)</th>
+                <th>Suma la 18 ani</th>
+                <th>Valoarea reală</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="tr-red">
+                <td style="color:#fca5a5;font-weight:600;">Cheltui banii</td>
+                <td class="val" style="color:#fca5a5;">0 €</td>
+                <td>Dependență totală de părinți</td>
+              </tr>
+              <tr class="tr-amber">
+                <td style="color:#fcd34d;font-weight:600;">Economisești</td>
+                <td class="val" style="color:#fcd34d;">~12.500 €</td>
+                <td>Erodat masiv de inflație</td>
+              </tr>
+              <tr class="tr-green">
+                <td style="color:#6ee7b7;font-weight:600;">Investești</td>
+                <td class="val" style="color:#6ee7b7;font-size:clamp(1.2rem,3vw,1.7rem);">~30.000 €</td>
+                <td style="font-weight:600;">Libertate și un start real ✅</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ SLIDE 7 ══ -->
+    <div class="slide t-blue" id="s6">
+      <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;text-align:center;gap:clamp(14px,2.5vw,28px);">
+        <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <h2 class="display">Timpul este prietenul tău.</h2>
+        <p class="body" style="max-width:580px;opacity:.9;">
+          Startul în viață al copilului tău nu trebuie lăsat la voia întâmplării. Nu ai nevoie de salarii de mii de euro, ci de <strong>disciplină</strong> și <strong>timp</strong>.
+        </p>
+
+        <div class="card-dark" style="width:100%;max-width:560px;">
+          <p class="sub" style="margin-bottom:16px;font-size:clamp(.95rem,2.2vw,1.1rem);">Tu în ce scenariu vrei să se afle copilul tău?</p>
+          <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;">
+            <span class="badge">Salvează postarea</span>
+            <span class="badge-outline">Trimite unui părinte</span>
+          </div>
+        </div>
+
+        <!-- ⬇️ WhatsApp CTA — înlocuiește NUMĂRUL_TĂU cu numărul tău (ex: 40712345678) -->
+        <a class="wa-btn"
+           href="https://wa.me/NUMĂRUL_TĂU?text=Bun%C4%83%20ziua!%20Am%20v%C4%83zut%20prezentarea%20despre%20viitorul%20copilului%20meu%20%E2%80%94%20a%C8%99%20vrea%20s%C4%83%20aflau%20mai%20mult."
+           target="_blank" rel="noopener">
+          <!-- WhatsApp icon -->
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+          Contactează-mă pe WhatsApp
+        </a>
+      </div>
+    </div>
+
+    <!-- ══ NAV ══ -->
+    <button class="nav-btn hidden" id="btn-prev" aria-label="Slide anterior">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <button class="nav-btn" id="btn-next" aria-label="Slide următor">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+
+    <!-- ══ DOTS ══ -->
+    <div id="dots"></div>
+
+  </div><!-- /deck -->
+</div><!-- /stage -->
+
+<script>
+  const TOTAL = 7;
+  let current = 0;
+
+  const slides = Array.from({length: TOTAL}, (_, i) => document.getElementById('s' + i));
+  const dotsEl = document.getElementById('dots');
+  const btnPrev = document.getElementById('btn-prev');
+  const btnNext = document.getElementById('btn-next');
+
+  // Build dots
+  slides.forEach((_, i) => {
+    const d = document.createElement('button');
+    d.className = 'dot' + (i === 0 ? ' active' : '');
+    d.setAttribute('aria-label', 'Slide ' + (i + 1));
+    d.addEventListener('click', () => goTo(i));
+    dotsEl.appendChild(d);
+  });
+
+  function getDots() { return Array.from(dotsEl.querySelectorAll('.dot')); }
+
+  function goTo(idx) {
+    if (idx < 0 || idx >= TOTAL || idx === current) return;
+    const prev = current;
+    slides[prev].classList.remove('active');
+    slides[prev].classList.add('exit-left');
+    setTimeout(() => slides[prev].classList.remove('exit-left'), 450);
+    current = idx;
+    slides[current].classList.add('active');
+    getDots().forEach((d, i) => d.classList.toggle('active', i === current));
+    btnPrev.classList.toggle('hidden', current === 0);
+    btnNext.classList.toggle('hidden', current === TOTAL - 1);
+  }
+
+  btnNext.addEventListener('click', () => goTo(current + 1));
+  btnPrev.addEventListener('click', () => goTo(current - 1));
+
+  // Keyboard
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight') goTo(current + 1);
+    if (e.key === 'ArrowLeft')  goTo(current - 1);
+  });
+
+  // Touch swipe
+  let tx = 0;
+  document.getElementById('deck').addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, {passive: true});
+  document.getElementById('deck').addEventListener('touchend',   e => {
+    const dx = tx - e.changedTouches[0].clientX;
+    if (Math.abs(dx) > 50) goTo(dx > 0 ? current + 1 : current - 1);
+  }, {passive: true});
+</script>
+
+</body>
+</html>
